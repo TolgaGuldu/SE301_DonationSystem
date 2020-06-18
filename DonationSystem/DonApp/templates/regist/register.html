@@ -1,0 +1,20 @@
+
+{% if user.is_authenticated %}
+
+    <p>You are already logged in {{ user.username }}!</p>
+
+{% else %}
+
+    <h3>In accordance to our site policy, your registration must first be reviewed by site administration.</h3>
+    <h3>Until then, you won't be able to login.</h3>
+
+    <p>Are you a
+        <a href="{% url 'registerDonator' %}">Donator</a>
+        or an
+        <a href="{% url 'registerNGO' %}">NGO</a>
+         ?
+    </p>
+{% endif %}
+
+
+

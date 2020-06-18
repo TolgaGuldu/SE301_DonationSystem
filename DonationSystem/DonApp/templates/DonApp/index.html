@@ -1,0 +1,25 @@
+{% extends 'DonApp/base.html' %}
+
+{% block content %}
+
+    <h2>CAMPAIGNS</h2>
+    {%  for campaign in campaigns %}
+        <h4>{{ campaign.campaign_name }}</h4>
+        <h6>Campaign Type: {{ campaign.type }}</h6>
+        <p>Description: {{ campaign.description }}</p>
+        <b/>
+        <p>Started by: {{ campaign.creator.org_name }}</p>
+
+    {%  endfor %}
+
+    <h2>NGOs</h2>
+    {%  for ngo in ngos %}
+        <h4>{{ ngo.org_name }}</h4>
+        <h6>Website: {{ ngo.org_website_link }}</h6>
+        <p>Description: {{ ngo.description }}</p>
+        <b/>
+
+
+    {%  endfor %}
+
+{% endblock %}

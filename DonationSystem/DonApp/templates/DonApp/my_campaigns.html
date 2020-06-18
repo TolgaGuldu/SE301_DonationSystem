@@ -1,0 +1,34 @@
+
+{% extends 'DonApp/base.html' %}
+
+{% block content %}
+
+<a href="{% url 'create_campaign' %}"><h3>Create New Campaign!</h3></a>
+
+
+    <h2>Campaigns:</h2>
+<div>
+    {% for campaign in my_campaigns %}
+
+        <form method="post" action="{% url 'edit_my_campaign' %}">
+        {% csrf_token %}
+            <tr>
+            <th><a href="{% url 'view_campaign_detail' pk=campaign.pk %}">{{ campaign.campaign_name }}</a></th>
+            <th style="padding-left: 10px"  rowspan="2">
+                <button name="pk" type="submit" class="btn btn-default"
+                       value="{{ campaign.pk }}" >
+                Edit Campaign
+                </button>
+            </th>
+        </tr>
+        <tr>
+            <td><p>Ends on: {{ campaign.end_date }}</p></td>
+        </tr>
+
+        </form>
+
+    {% endfor %}
+
+</table>
+</div>
+{% endblock %}

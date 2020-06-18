@@ -1,0 +1,58 @@
+{%  extends 'DonApp/base.html' %}
+
+{% block content %}
+    <title>Profile</title>
+
+
+{% block body %}
+
+    <div class="container">
+        <h1> Campaign </h1>
+            <p>Campaign Name: {{ campaign.campaign_name }}</p>
+            <p>Campaign Type: {{ campaign.campaign_type }}</p>
+            <p>Start Date: {{ campaign.start_date }}    End Date: {{ campaign.end_date }}</p>
+            <p>Description: {{ campaign.description }}</p>
+    {% if user.is_authenticated and user.donator_user %}
+    {% if campaign.campaign_type == 'Monetary' %}
+    <a href="{% url 'money_donation' pk=campaign.pk %}" class="btn btn-success" role="button">
+        Make Money Donation </a>
+    {% endif %}
+    {% if campaign.campaign_type == 'Item' %}
+    <a href="{% url 'item_donation' pk=campaign.pk %}" class="btn btn-success" role="button">
+        Make Item Donation </a>
+    {% endif %}
+    {% if campaign.campaign_type == 'Both' %}
+    <a href="{% url 'item_donation' pk=campaign.pk %}" class="btn btn-success" role="button">
+        Make Item Donation </a>
+    <a href="{% url 'money_donation' pk=campaign.pk %}" class="btn btn-success" role="button">
+    Make Money Donation </a>
+
+    {% endif %}
+        {% endif %}
+    {% if user.is_authenticated and not usr.donator_user %}
+        {% else %}
+        <button class="btn btn-block" >
+        Make Money Donation </button>
+        <button class="btn btn-block" >
+        Make Item Donation </button>
+        <b>Please login or register!</b>
+    {% endif %}
+        <h2> Latest Item Donations </h2>
+            {% for donation in latest_item_donations %}
+                <li>Donator: {{ donation.donator.user.username}} ---  Donated on: {{ donation.timestamp }}</li>
+
+            {% endfor %}
+        <h2> Latest Money Donations </h2>
+            {% for donation in latest_money_donations %}
+                <li>Donator: {{ donation.donator.user.username}} ---  Donated on: {{ donation.timestamp }}</li>
+
+            {% endfor %}
+
+
+
+
+    </div>
+
+{% endblock %}
+
+{% endblock %}

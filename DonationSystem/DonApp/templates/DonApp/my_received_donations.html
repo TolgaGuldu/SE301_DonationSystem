@@ -1,0 +1,16 @@
+
+{% extends 'DonApp/base.html' %}
+
+{% block content %}
+<ul>
+    <h3>Donations:</h3>
+    {% for donation in received_donations %}
+    <li>
+        <p>Donation by: {{ donation.donator.user.username }}     Amount: {{ donation.amount }} TL</p>
+        <p>Donated on: {{ donation.timestamp }}</p>
+    </li>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

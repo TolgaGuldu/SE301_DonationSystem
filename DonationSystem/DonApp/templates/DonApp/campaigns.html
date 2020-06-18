@@ -1,0 +1,17 @@
+
+{% extends 'DonApp/base.html' %}
+
+{% block content %}
+<ul>
+
+    {% for campaign in campaigns %}
+    <li>
+        <a href="{% url 'view_campaign_detail' pk=campaign.pk %}">{{ campaign.campaign_name }}</a>
+        <p>Type: {{ campaign.campaign_type }}</p>
+        <p>Ends on: {{ campaign.end_date }}</p>
+    </li>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

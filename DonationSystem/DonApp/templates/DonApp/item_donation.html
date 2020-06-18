@@ -1,0 +1,17 @@
+{%  extends 'DonApp/base.html' %}
+
+{% block content %}
+    <title>Profile</title>
+
+{% block body %}
+
+<form method="post">
+  {{ donation_form.as_p }}
+  {{ item_form.as_p }}
+  {% csrf_token %}
+  <p><input type="submit"></p>
+</form>
+
+{% endblock %}
+
+{% endblock %}

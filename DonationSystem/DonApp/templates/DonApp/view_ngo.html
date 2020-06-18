@@ -1,0 +1,42 @@
+{%  extends 'DonApp/base.html' %}
+
+{% block content %}
+    <title>Profile</title>
+
+
+{% block body %}
+
+    <div class="container">
+        <h1> Profile </h1>
+            <p>Username: {{ ngo.org_name }}</p>
+            <p>First Name: {{ ngo.description }}</p>
+            <p>Last Name: {{ ngo.org_phone_number }}</p>
+            <p>Email: {{ ngo.contact_mail }}</p>
+            <p>Website: {{ ngo.org_website_link }}</p>
+ {% if user.is_authenticated %}
+     {% if user.donator_user %}
+    <a href="{% url 'ngo_money_donation' pk=ngo.pk %}" class="btn btn-success" role="button">
+        Make Money Donation </a>
+
+     {% elif not user.donator_user%}
+     {% endif %}
+     {% else %}
+     <button class="btn btn-block">
+        Make Money Donation </button><b>Please login or register!</b>
+    {% endif %}
+
+
+        <h2> Campaigns </h2>
+            {% for campaign in ngo.campaigns.all %}
+                <p>Campaign Name: {{ campaign.campaign_name}}</p>
+
+            {% endfor %}
+
+
+
+
+    </div>
+
+{% endblock %}
+
+{% endblock %}

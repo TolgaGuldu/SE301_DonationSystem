@@ -1,0 +1,33 @@
+{%  extends 'DonApp/base.html' %}
+
+{% block content %}
+    <title>Profile</title>
+
+
+{% block body %}
+
+    <div class="container">
+        <h1> Profile </h1>
+            <p>Username: {{ user.username }}</p>
+            <p>First Name: {{ user.first_name }}</p>
+            <p>Last Name: {{ user.last_name }}</p>
+            <p>Email: {{ user.email }}</p>
+            {% if user.ngo_user %}
+                <p>Organization Name: {{ user.ngo_user.org_name }}</p>
+                <p>Description: {{ user.ngo_user.description }}</p>
+                <p>Phone Number: {{ user.ngo_user.org_phone_num }}</p>
+                <p>Contact Mail: {{ user.ngo_user.contact_mail }}</p>
+                <p>Website: <a href="//{{ user.ngo_user.org_website_link }}">{{ user.ngo_user.org_website_link }}</a></p>
+
+            {% endif %}
+
+            <button class=" btn btn-default" onclick='location.href="{% url 'edit_profile' %}"'>Edit Profile</button>
+
+
+
+
+    </div>
+
+{% endblock %}
+
+{% endblock %}

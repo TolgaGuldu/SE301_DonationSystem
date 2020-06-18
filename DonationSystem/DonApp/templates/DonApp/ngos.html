@@ -1,0 +1,12 @@
+{% extends 'DonApp/base.html' %}
+
+{% block content %}
+<ul>
+
+    {% for ngo in ngos %}
+    <li><a href="{% url 'view_ngo_detail' pk=ngo.pk %}">{{ ngo.org_name }}</a></li>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
